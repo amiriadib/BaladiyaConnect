@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "137672441122",
+    "project_id": "baladiyaconnect",
+    "storage_bucket": "baladiyaconnect.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137672441122:android:f5c60d65caed78d87e797b",
+        "android_client_info": {
+          "package_name": "com.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137672441122-054ui7c2fmff9g866pg576p9bfats0j4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myapp",
+            "certificate_hash": "42af604059710734546c6677116f143e09383a0d"
+          }
+        },
+        {
+          "client_id": "137672441122-183mkmp477r9l6qhknnlhvai301u7025.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDei4SHuiZFoKrj1TeF2aDUVoeLdDIqkB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137672441122-183mkmp477r9l6qhknnlhvai301u7025.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

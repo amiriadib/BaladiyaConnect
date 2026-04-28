@@ -9,9 +9,14 @@ import {
   StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 import { Colors, Shadows } from '../theme';
 
 const ProfileScreen = ({ navigation }: { navigation: any }) => {
+  const user = auth().currentUser;
+  const userName = user?.displayName || 'Citoyen Anonyme';
+  const avatarInitials = userName.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase();
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.primary} />
@@ -19,9 +24,9 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
       {/* Header: User & Points Banner */}
       <View style={styles.header}>
         <View style={[styles.avatarBox, Shadows.medium]}>
-          <Text style={styles.avatarText}>AA</Text>
+          <Text style={styles.avatarText}>{avatarInitials}</Text>
         </View>
-        <Text style={styles.userName}>Adib Amiri</Text>
+        <Text style={styles.userName}>{userName}</Text>
         <Text style={styles.userLocation}>République Tunisienne</Text>
         
         <View style={styles.badgeRow}>

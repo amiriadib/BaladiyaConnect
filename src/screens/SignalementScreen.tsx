@@ -38,26 +38,12 @@ const SignalementScreen = ({ navigation, route }: { navigation: any, route: any 
   const [duplicateFound, setDuplicateFound] = useState<boolean>(false);
 
   const handleCameraCapture = async () => {
-    const options = {
-      mediaType: 'photo' as const,
-      quality: 1 as const,
-      saveToPhotos: true,
-    };
-
-    launchCamera(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorCode) {
-        console.log('ImagePicker Error: ', response.errorMessage);
-        Alert.alert('Erreur', 'Impossible d\'ouvrir la caméra.');
-      } else if (response.assets && response.assets.length > 0) {
-        const uri = response.assets[0].uri;
-        if (uri) {
-          setImageUri(uri);
-          startAIScan();
-        }
-      }
-    });
+    // Mode démo statique pour montrer l'IA sans crasher sur les émulateurs/vieux téléphones
+    setIsScanning(true);
+    setTimeout(() => {
+      setImageUri('https://images.unsplash.com/photo-1595278455139-4cedb72ebce6?q=80&w=1000');
+      startAIScan();
+    }, 800);
   };
 
   const startAIScan = () => {

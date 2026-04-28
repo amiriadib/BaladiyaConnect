@@ -19,6 +19,7 @@ import { Colors, Shadows } from '../theme';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -31,10 +32,20 @@ const LoginScreen = () => {
     setLoading(true);
     try {
       if (isSignUp) {
-        await auth().createUserWithEmailAndPassword(email, password);
+        if (!username) {
+          Alert.alert('Erreur', 'Veuillez entrer un nom d\'utilisateur.');
+          setLoading(false);
+          return;
+        }
+        const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+        await userCredential.user.updateProfile({ displayName: username });
         Alert.alert('Succès', 'Compte créé avec succès !');
       } else {
-        await auth().signInWithEmailAndPassword(email, password);
+        const userCredential = await auth().signInWithEmailAndPassword(email, password);
+        // Astuce pour la présentation : on met à jour le nom même lors d'une simple connexion
+        if (username) {
+          await userCredential.user.updateProfile({ displayName: username });
+        }
       }
     } catch (error: any) {
       console.error(error);
@@ -83,6 +94,18 @@ const LoginScreen = () => {
               </Text>
               
               <View style={styles.inputGroup}>
+                  <View style={styles.inputWrapper}>
+                    <Icon name="account" size={20} color={Colors.primary} />
+                    <TextInput
+                      style={styles.input}
+                      placeholder="Nom d'utilisateur (Pour la présentation)"
+                      placeholderTextColor="#94A3B8"
+                      value={username}
+                      onChangeText={setUsername}
+                      autoCapitalize="words"
+                    />
+                  </View>
+                
                 <View style={styles.inputWrapper}>
                   <Icon name="at" size={20} color={Colors.primary} />
                   <TextInput
